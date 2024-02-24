@@ -1,0 +1,30 @@
+{
+  "name": "whatscool",
+  "version": "1.0.0",
+  "description": "Make your WhatsApp account cooler.",
+  "main": "index.js",
+  "dependencies": {
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "@whiskeysockets/baileys": "^6.0.1",
+    "cfonts": "^3.2.0",
+    "chalk": "^4.1.2",
+    "fs": "^0.0.1-security",
+    "pino": "^8.14.1",
+    "qrcode-terminal": "^0.12.0",
+    "spinnies": "^0.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsreimau/whatscool.git"
+  },
+  "author": "Muhamad Ikbal Maulana | ItsReimau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsreimau/whatscool/issues"
+  },
+  "homepage": "https://github.com/itsreimau/whatscool#readme"
+}
