@@ -59,22 +59,27 @@ function processMessage(m, sock) {
 
     if (!m.message) return;
 
-    if (m.chat.endsWith('@s.whatsapp.net') && global.system.autoTyping) {
-        sock.sendPresenceUpdate('composing', m.chat);
+    if (global.system.autoTyping) {
+        if (m.chat.endsWith('@s.whatsapp.net')) {
+            sock.sendPresenceUpdate('composing', m.chat);
+        }
     }
 
-    if (m.chat.endsWith('@s.whatsapp.net') && global.system.autoRecording) {
-        sock.sendPresenceUpdate('recording', m.chat);
+    if (global.system.autoRecording) {
+        if (m.chat.endsWith('@s.whatsapp.net')) {
+            sock.sendPresenceUpdate('recording', m.chat);
+        }
     }
 
-    if (m.chat.endsWith('broadcast') && global.system.autoViewStatus) {
-        sock.readMessages([m.key]);
+    if (global.system.autoViewStatus) {
+        if (m.chat.endsWith('broadcast')) {
+            sock.readMessages([m.key]);
+        }
     }
 
     setInterval(async () => {
         if (global.system.autoUpdateBio) {
-            const status = global.info.status;
-            await sock.updateProfileStatus(status);
+            await sock.updateProfileStatus(global.info.status);
         }
     }, 60000);
 }

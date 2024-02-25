@@ -1,12 +1,12 @@
 global.info = {
-    name: 'Wautils',
+    name: '@itsreimau / whatscool',
     status: 'Take care of yourself.'
 };
 
 global.system = {
-    alwaysOnline: false,
-    autoTyping: true,
+    alwaysOnline: true,
     autoRecording: false,
-    autoUpdateBio: true,
+    autoTyping: false,
+    autoUpdateBio: false,
     autoViewStatus: true
 };
