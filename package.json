@@ -1,15 +1,15 @@
 {
   "name": "whatscool",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Make your WhatsApp account cooler.",
   "main": "index.js",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
-    "@whiskeysockets/baileys": "^6.0.1",
+    "@whiskeysockets/baileys": "^6.6.0",
     "cfonts": "^3.2.0",
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "fs": "^0.0.1-security",
-    "pino": "^8.14.1",
+    "pino": "^8.19.0",
     "qrcode-terminal": "^0.12.0",
     "spinnies": "^0.5.1"
   },

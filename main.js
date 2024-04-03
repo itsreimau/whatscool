@@ -8,7 +8,7 @@ const {
 } = require('@whiskeysockets/baileys');
 const logger = require('@whiskeysockets/baileys/lib/Utils/logger').default;
 const pino = require('pino');
-const chalk = require('chalk');
+const chalk = import('chalk'); // Berbeda dari yang lain :v
 const spinnies = new(require('spinnies'))();
 
 global.store = makeInMemoryStore({
