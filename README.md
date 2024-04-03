@@ -30,14 +30,12 @@ Download Termux first, you must have stable internet to run it.
 $ termux-setup-storage (After that tap permission)
 $ pkg update
 $ pkg upgrade
-$ pkg install wget
-$ pkg install ffmpeg
 $ pkg install nodejs
 $ pkg install git nodejs -y
 $ git clone https://github.com/itsreimau/whatscool (Here you paste the link of the repository you forked)
-$ cd whatscool (Your repository name)
-$ rm -rf session 
-$ npm install (If you did not install node modules manually, continue with the commands below)
+$ cd whatscool (Your repository name) 
+$ npm install
+$ npm update (Optional)
 ```
 
 Once everything is installed, let's run it.
@@ -49,28 +47,27 @@ $ node index.js
 ### LINUX / UBUNTU / VPS
 ```
 $ sudo su
-$ sudo apt update
-$ sudo apt upgrade
-$ sudo apt install wget
-$ sudo apt install ffmpeg
+$ sudo apt update && sudo apt upgrade
 $ sudo apt install nodejs
 $ sudo apt install git nodejs -y
 $ git clone https://github.com/itsreimau/whatscool (Here you paste the link of the repository you forked)
 $ cd whatscool (Your repository name)
-$ rm -rf session 
-$ npm install (If you did not install node modules manually, continue with the commands below)
+$ npm install && npm update (Optional, just an update, who knows, there is already an old version of the module)
 ```
 
 ### Linked devices
 Now visit the linked device and scan the QR code.
-This will automatically generate a session folder.
+This will automatically generate a state folder.
 
 ## Hosting Services (For 24 hours online)
 ### [Danbot Host (DBH)](https://danbot.host/)
 - Tutorial coming soon!
 
+### [Serv00](https://serv00.com/)
+- Tutorial coming soon!
+
 ## License
-[MIT License](https://github.com/Mulandii/Mulandi001/blob/main/LICENSE)
+[MIT License](https://github.com/itsreimau/whatscool/blob/master/LICENSE)
 
 © 2024 ItsReimau. All rights reserved.
 

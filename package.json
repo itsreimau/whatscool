@@ -1,19 +1,8 @@
 {
   "name": "whatscool",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "Make your WhatsApp account cooler.",
   "main": "index.js",
-  "dependencies": {
-    "@adiwajshing/keyed-db": "^0.2.4",
-    "@whiskeysockets/baileys": "^6.6.0",
-    "cfonts": "^3.2.0",
-    "chalk": "^5.3.0",
-    "fs": "^0.0.1-security",
-    "pino": "^8.19.0",
-    "qrcode-terminal": "^0.12.0",
-    "spinnies": "^0.5.1"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/itsreimau/whatscool/issues"
   },
-  "homepage": "https://github.com/itsreimau/whatscool#readme"
+  "homepage": "https://github.com/itsreimau/whatscool#readme",
+  "dependencies": {
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "@whiskeysockets/baileys": "^6.6.0",
+    "cfonts": "^3.2.0",
+    "chalk": "^5.3.0",
+    "fs": "^0.0.1-security",
+    "pino": "^8.19.0",
+    "qrcode-terminal": "^0.12.0",
+    "spinnies": "^0.5.1"
+  },
+  "devDependencies": {}
 }
