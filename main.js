@@ -1,4 +1,3 @@
-require('./config.js');
 const makeWASocket = require('@whiskeysockets/baileys').default;
 const {
     useMultiFileAuthState,
