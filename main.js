@@ -25,7 +25,7 @@ async function main() {
     const {
         state,
         saveCreds
-    } = await useMultiFileAuthState('session');
+    } = await useMultiFileAuthState('state');
 
     const sock = makeWASocket({
         logger: pino({
