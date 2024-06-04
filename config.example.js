@@ -1,6 +1,6 @@
 global.info = {
-    name: '@itsreimau / whatscool',
-    status: 'Take care of yourself.'
+    name: "@itsreimau / whatscool",
+    status: "Take care of yourself."
 };
 
 global.system = {

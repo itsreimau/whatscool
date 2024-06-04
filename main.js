@@ -1,19 +1,19 @@
-const makeWASocket = require('@whiskeysockets/baileys').default;
+const makeWASocket = require("@whiskeysockets/baileys").default;
 const {
     useMultiFileAuthState,
     jidDecode,
     makeInMemoryStore,
     DisconnectReason
-} = require('@whiskeysockets/baileys');
-const logger = require('@whiskeysockets/baileys/lib/Utils/logger').default;
-const pino = require('pino');
-const chalk = import('chalk'); // Berbeda dari yang lain :v
-const spinnies = new(require('spinnies'))();
+} = require("@whiskeysockets/baileys");
+const logger = require("@whiskeysockets/baileys/lib/Utils/logger").default;
+const pino = require("pino");
+const chalk = import("chalk"); // Berbeda dari yang lain :v
+const spinnies = new(require("spinnies"))();
 
 global.store = makeInMemoryStore({
     logger: pino().child({
-        level: 'silent',
-        stream: 'store'
+        level: "silent",
+        stream: "store"
     })
 });
 
@@ -25,30 +25,30 @@ async function main() {
     const {
         state,
         saveCreds
-    } = await useMultiFileAuthState('state');
+    } = await useMultiFileAuthState("state");
 
     const sock = makeWASocket({
         logger: pino({
-            level: 'silent'
+            level: "silent"
         }),
         printQRInTerminal: true,
-        browser: [global.info.name, 'Safari', '1.0.0'],
+        browser: [global.info.name, "Safari", "1.0.0"],
         auth: state,
         markOnlineOnConnect: global.system.alwaysOnline
     });
 
-    sock.ev.on('messages.upsert', async chatUpdate => {
+    sock.ev.on("messages.upsert", async (chatUpdate) => {
         const m = chatUpdate.messages[0];
         processMessage(m, sock);
     });
 
     sock.decodeJid = (jid) => {
         if (!jid) return jid;
-        return /:\d+@/gi.test(jid) ? (jidDecode(jid) || {}).user + '@' + (jidDecode(jid) || {}).server : jid;
+        return /:\d+@/gi.test(jid) ? (jidDecode(jid) || {}).user + "@" + (jidDecode(jid) || {}).server : jid;
     };
 
-    sock.ev.on('connection.update', (update) => handleConnectionUpdate(update, sock));
-    sock.ev.on('creds.update', saveCreds);
+    sock.ev.on("connection.update", (update) => handleConnectionUpdate(update, sock));
+    sock.ev.on("creds.update", saveCreds);
 }
 
 function processMessage(m, sock) {
@@ -59,19 +59,19 @@ function processMessage(m, sock) {
     if (!m.message) return;
 
     if (global.system.autoTyping) {
-        if (m.chat.endsWith('@s.whatsapp.net')) {
-            sock.sendPresenceUpdate('composing', m.chat);
+        if (m.chat.endsWith("@s.whatsapp.net")) {
+            sock.sendPresenceUpdate("composing", m.chat);
         }
     }
 
     if (global.system.autoRecording) {
-        if (m.chat.endsWith('@s.whatsapp.net')) {
-            sock.sendPresenceUpdate('recording', m.chat);
+        if (m.chat.endsWith("@s.whatsapp.net")) {
+            sock.sendPresenceUpdate("recording", m.chat);
         }
     }
 
     if (global.system.autoViewStatus) {
-        if (m.chat.endsWith('broadcast')) {
+        if (m.chat.endsWith("broadcast")) {
             sock.readMessages([m.key]);
         }
     }
@@ -89,22 +89,22 @@ function handleConnectionUpdate(update, sock) {
         lastDisconnect,
         qr
     } = update;
-    if (lastDisconnect == 'undefined' && qr != 'undefined') {
+    if (lastDisconnect == "undefined" && qr != "undefined") {
         qrcode.generate(qr, {
             small: true
         });
     }
-    if (connection === 'connecting') {
-        spinnies.add('start', {
-            text: 'Connecting...'
+    if (connection === "connecting") {
+        spinnies.add("start", {
+            text: "Connecting..."
         });
-    } else if (connection === 'open') {
-        spinnies.succeed('start', {
+    } else if (connection === "open") {
+        spinnies.succeed("start", {
             text: `Connected successfully. You have logged in as ${sock.user.name}`
         });
-    } else if (connection === 'close') {
+    } else if (connection === "close") {
         if (lastDisconnect.error.output.statusCode == DisconnectReason.loggedOut) {
-            spinnies.fail('start', {
+            spinnies.fail("start", {
                 text: `Can't connect!`
             });
             process.exit(0);
