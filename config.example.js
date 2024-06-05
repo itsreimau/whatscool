@@ -8,5 +8,6 @@ global.system = {
     autoRecording: false,
     autoTyping: false,
     autoUpdateBio: false,
-    autoViewStatus: true
+    autoViewStatus: true,
+    usePairingCode: true
 };

@@ -1,11 +1,13 @@
 const makeWASocket = require("@whiskeysockets/baileys").default;
 const {
     useMultiFileAuthState,
+    PHONENUMBER_MCC,
     jidDecode,
     makeInMemoryStore,
     DisconnectReason
 } = require("@whiskeysockets/baileys");
 const logger = require("@whiskeysockets/baileys/lib/Utils/logger").default;
+const readline = require("readline");
 const pino = require("pino");
 const chalk = import("chalk"); // Berbeda dari yang lain :v
 const spinnies = new(require("spinnies"))();
@@ -16,6 +18,12 @@ global.store = makeInMemoryStore({
         stream: "store"
     })
 });
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+})
+const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 
 const color = (text, color) => {
     return !color ? chalk.green(text) : chalk.keyword(color)(text);
@@ -31,11 +39,30 @@ async function main() {
         logger: pino({
             level: "silent"
         }),
-        printQRInTerminal: true,
+        printQRInTerminal: !global.system.usePairingCode,
         browser: [global.info.name, "Safari", "1.0.0"],
         auth: state,
         markOnlineOnConnect: global.system.alwaysOnline
     });
+
+    if (global.system.usePairingCode && !sock.authState.creds.registered) {
+        let phoneNumber;
+        phoneNumber = await question("Enter phone number: ");
+        phoneNumber = phoneNumber.replace(/[^0-9]/g, "");
+
+        if (!Object.keys(PHONENUMBER_MCC).some((v) => phoneNumber.startsWith(v))) {
+            console.log("Enter the phone number according to your country code.");
+            phoneNumber = await question("Enter phone number: ");
+            phoneNumber = phoneNumber.replace(/[^0-9]/g, "");
+            rl.close();
+        }
+
+        setTimeout(async () => {
+            let code = await sock.requestPairingCode(phoneNumber);
+            code = code.match(/.{1,4}/g).join("-") || code;
+            console.log("Your pairing code: \n" + code);
+        }, 3000);
+    }
 
     sock.ev.on("messages.upsert", async (chatUpdate) => {
         const m = chatUpdate.messages[0];
