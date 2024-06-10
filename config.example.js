@@ -1,7 +1,7 @@
 global.info = {
     name: "@itsreimau / whatscool",
     status: "Take care of yourself.",
-    phoneNumber: "6283838039693" // Ignore if you use QR code for authentication.
+    number: "6283838039693" // Ignore if you use QR code for authentication.
 };
 
 global.system = {
