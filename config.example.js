@@ -7,8 +7,8 @@ global.info = {
 global.system = {
     alwaysOnline: true,
     autoRecording: false,
-    autoTyping: false,
-    autoUpdateBio: false,
+    autoTyping: true,
+    autoUpdateBio: true,
     autoViewStatus: true,
-    usePairingCode: true
+    usePairingCode: false // Error
 };
