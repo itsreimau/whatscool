@@ -39,7 +39,7 @@ async function main() {
     });
 
     if (global.system.usePairingCode && !sock.authState.creds.registered) {
-        let phoneNumber = global.bot.number;
+        let phoneNumber = global.info.number;
         phoneNumber = phoneNumber.replace(/[^0-9]/g, "");
 
         if (!Object.keys(PHONENUMBER_MCC).some((v) => phoneNumber.startsWith(v))) {
